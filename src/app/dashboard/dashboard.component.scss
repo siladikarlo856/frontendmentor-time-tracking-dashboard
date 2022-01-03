@@ -26,7 +26,7 @@
     background-color: var(--color-study);
   }
 
-  .excercise {
+  .exercise {
     background-color: var(--color-exercise);
   }
 
@@ -85,9 +85,11 @@
       color: white;
     }
 
-    .daily,
-    .monthly {
+    .timeframe {
       color: var(--desaturated-blue);
+    }
+    .selected {
+      color: white;
     }
   }
 }

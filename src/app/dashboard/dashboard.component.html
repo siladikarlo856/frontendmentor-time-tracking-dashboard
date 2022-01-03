@@ -10,141 +10,66 @@
       <div class="user-lastname">Robson</div>
     </div>
     <div class="nav-menu">
-      <a href="#"><div class="daily">Daily</div></a>
-      <a href="#"><div class="weekly">Weekly</div></a>
-      <a href="#"><div class="monthly">Monthly</div></a>
+      <a href="#">
+        <div
+          class="timeframe"
+          (click)="onSelect('daily')"
+          [class.selected]="'daily' === selectedTimeframe"
+        >
+          Daily
+        </div>
+      </a>
+      <a href="#"
+        ><div
+          class="timeframe"
+          (click)="onSelect('weekly')"
+          [class.selected]="'weekly' === selectedTimeframe"
+        >
+          Weekly
+        </div></a
+      >
+      <a href="#"
+        ><div
+          class="timeframe"
+          (click)="onSelect('monthly')"
+          [class.selected]="'monthly' === selectedTimeframe"
+        >
+          Monthly
+        </div></a
+      >
     </div>
   </div>
-  <div class="work activity-card-container">
-    <img
-      class="activity-icon"
-      src="../../assets/images/icon-work.svg"
-      alt="Work icon"
-    />
-    <div class="activity-card nohover">
-      <div class="title-container">
-        <div class="activity-card-title">Work</div>
-        <img
-          class="dots-icon"
-          src="../../assets/images/icon-ellipsis.svg"
-          alt="Dots"
-        />
-      </div>
-      <div class="activity-duration" id="currentPeriodWorkValue">32hrs</div>
-      <div class="last-period-container">
-        Last <span class="last-period">week</span> -
-        <span id="lastPeriodWorkValue">36</span>hrs
-      </div>
-    </div>
-  </div>
-  <div class="play activity-card-container">
-    <img
-      class="activity-icon"
-      src="../../assets/images/icon-play.svg"
-      alt="Play icon"
-    />
-    <div class="activity-card">
-      <div class="title-container">
-        <div class="activity-card-title">Play</div>
-        <img
-          class="dots-icon"
-          src="../../assets/images/icon-ellipsis.svg"
-          alt="Dots"
-        />
-      </div>
-      <div class="activity-duration" id="currentPeriodPlayValue">10hrs</div>
-      <div class="last-period-container">
-        Last <span class="last-period">week</span> -
-        <span id="lastPeriodPlayValue">8</span>hrs
-      </div>
-    </div>
-  </div>
-  <div class="study activity-card-container">
-    <img
-      class="activity-icon"
-      src="../../assets/images/icon-study.svg"
-      alt="Study icon"
-    />
-    <div class="activity-card">
-      <div class="title-container">
-        <div class="activity-card-title">Study</div>
-        <img
-          class="dots-icon"
-          src="../../assets/images/icon-ellipsis.svg"
-          alt="Dots"
-        />
-      </div>
-      <div class="activity-duration" id="currentPeriodStudyValue">4hrs</div>
-      <div class="last-period-container">
-        Last <span class="last-period">week</span> -
-        <span id="lastPeriodStudyValue">7</span>hrs
-      </div>
-    </div>
-  </div>
-  <div class="excercise activity-card-container">
-    <img
-      class="activity-icon"
-      src="../../assets/images/icon-exercise.svg"
-      alt="Excercise icon"
-    />
-    <div class="activity-card">
-      <div class="title-container">
-        <div class="activity-card-title">Excercise</div>
-        <img
-          class="dots-icon"
-          src="../../assets/images/icon-ellipsis.svg"
-          alt="Dots"
-        />
-      </div>
-      <div class="activity-duration" id="currentPeriodExerciseValue">4hrs</div>
-      <div class="last-period-container">
-        Last <span class="last-period">week</span> -
-        <span id="lastPeriodExerciseValue">5</span>hrs
-      </div>
-    </div>
-  </div>
-  <div class="social activity-card-container">
-    <img
-      class="activity-icon"
-      src="../../assets/images/icon-social.svg"
-      alt="Social icon"
-    />
 
-    <div class="activity-card">
-      <div class="title-container">
-        <div class="activity-card-title">Social</div>
-        <img
-          class="dots-icon"
-          src="../../assets/images/icon-ellipsis.svg"
-          alt="Dots"
-        />
-      </div>
-      <div class="activity-duration" id="currentPeriodSocialValue">5hrs</div>
-      <div class="last-period-container">
-        Last <span class="last-period">week</span> -
-        <span id="lastPeriodSocialValue">10</span>hrs
-      </div>
-    </div>
-  </div>
-  <div class="self-care activity-card-container">
+  <div
+    *ngFor="let activity of activityData"
+    class="{{
+      activity.title.toLowerCase().replace(regex, '-')
+    }} activity-card-container"
+  >
     <img
       class="activity-icon"
-      src="../../assets/images/icon-self-care.svg"
-      alt="Self care icon"
+      src="../../assets/images/icon-{{
+        activity.title.toLowerCase().replace(regex, '-')
+      }}.svg"
+      alt=""
     />
     <div class="activity-card">
       <div class="title-container">
-        <div class="activity-card-title">Self Care</div>
+        <div class="activity-card-title">{{ activity.title }}</div>
         <img
           class="dots-icon"
           src="../../assets/images/icon-ellipsis.svg"
           alt="Dots"
         />
       </div>
-      <div class="activity-duration" id="currentPeriodSelfCareValue">2hrs</div>
+      <div class="activity-duration">
+        {{ activity.timeframes[selectedTimeframe].current }}hrs
+      </div>
       <div class="last-period-container">
-        Last <span class="last-period">week</span> -
-        <span id="lastPeriodSelfCareValue">2</span>hrs
+        Last <span class="last-period">{{ timeframeLabel }}</span> -
+        <span id="lastPeriodWorkValue">
+          {{ activity.timeframes[selectedTimeframe].previous }}</span
+        >hrs
       </div>
     </div>
   </div>
