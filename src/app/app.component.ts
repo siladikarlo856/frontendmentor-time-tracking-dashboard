@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-time-tracking-dashboard';
+  title = 'Frontend Mentor | Time tracking dashboard';
 }
